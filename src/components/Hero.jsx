@@ -1,5 +1,17 @@
 import { useState } from "react";
-import { ArrowUpRight, Check, Circle } from "lucide-react";
+import {
+  ArrowUpRight,
+  CalendarDays,
+  Check,
+  ChevronDown,
+  Circle,
+  Home,
+  Inbox,
+  LayoutDashboard,
+  Plus,
+  Search,
+  Settings2,
+} from "lucide-react";
 import Button from "./Button";
 
 const tasks = [
@@ -23,35 +35,112 @@ function WorkspacePreview() {
       className="workspace-preview animate-enter-right"
     >
       <div className="workspace-topbar">
-        <div className="flex items-center gap-3">
-          <span className="workspace-mark" aria-hidden="true">N</span>
-          <span className="text-sm font-semibold text-ink">Studio workspace</span>
+        <div aria-hidden="true" className="workspace-window-controls">
+          <span />
+          <span />
+          <span />
         </div>
+        <span className="workspace-topbar-title">novaflow.app / studio</span>
+        <button aria-label="Search workspace" className="workspace-search" disabled type="button">
+          <Search aria-hidden="true" size={15} />
+          <span>Search</span>
+          <kbd>⌘ K</kbd>
+        </button>
       </div>
 
-      <div className="workspace-content">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-ink">
-            Team overview
-          </h2>
-        </div>
+      <div className="workspace-shell">
+        <aside aria-label="Sample workspace navigation" className="workspace-sidebar">
+          <button className="workspace-team" disabled type="button">
+            <span aria-hidden="true" className="workspace-mark">N</span>
+            <span className="min-w-0 flex-1 text-left">
+              <span className="block truncate text-xs font-semibold text-ink">Northstar Studio</span>
+              <span className="mt-0.5 block text-[10px] text-muted">Free workspace</span>
+            </span>
+            <ChevronDown aria-hidden="true" className="shrink-0 text-muted" size={14} />
+          </button>
 
-        <div className="workspace-summary">
-          <div className="summary-cell summary-cell-featured">
-            <p>Everything in one place</p>
-            <span>Projects, owners, and next steps stay connected.</span>
-            <ArrowUpRight aria-hidden="true" size={19} />
+          <p className="workspace-nav-label">Workspace</p>
+          <div className="workspace-nav-group">
+            <span aria-current="page" className="workspace-nav-item workspace-nav-active">
+              <LayoutDashboard aria-hidden="true" size={15} />
+              Overview
+            </span>
+            <span className="workspace-nav-item">
+              <Home aria-hidden="true" size={15} />
+              My work
+            </span>
+            <span className="workspace-nav-item">
+              <Inbox aria-hidden="true" size={15} />
+              Inbox
+              <span className="workspace-nav-count">3</span>
+            </span>
+            <span className="workspace-nav-item">
+              <CalendarDays aria-hidden="true" size={15} />
+              Calendar
+            </span>
           </div>
-          <div className="summary-cell">
-            <span className="summary-icon"><Check aria-hidden="true" size={15} /></span>
-            <p>Clear ownership</p>
-            <span>Every task has a next step.</span>
-          </div>
-        </div>
 
-        <div className="mt-6">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <h3 className="text-sm font-semibold text-ink">Team tasks</h3>
+          <div className="workspace-project-heading">
+            <p className="workspace-nav-label">Projects</p>
+            <button aria-label="Add a project" className="workspace-add-button" disabled type="button">
+              <Plus aria-hidden="true" size={14} />
+            </button>
+          </div>
+          <div className="workspace-project-list">
+            <span><i className="project-swatch project-swatch-green" />Website refresh</span>
+            <span><i className="project-swatch project-swatch-gold" />Spring launch</span>
+            <span><i className="project-swatch project-swatch-blue" />Client onboarding</span>
+          </div>
+
+          <div className="workspace-profile">
+            <span aria-hidden="true" className="workspace-profile-avatar">AM</span>
+            <span className="min-w-0 flex-1">
+              <span className="block truncate text-[11px] font-semibold text-ink">Alex Morgan</span>
+              <span className="block text-[10px] text-muted">Team admin</span>
+            </span>
+            <Settings2 aria-hidden="true" className="text-muted" size={15} />
+          </div>
+        </aside>
+
+        <div className="workspace-content">
+          <div className="workspace-page-heading">
+            <div>
+              <p className="workspace-date">MONDAY, OCTOBER 12</p>
+              <h2 className="mt-1 font-heading text-2xl font-bold tracking-tight text-ink">
+                Team overview
+              </h2>
+              <p className="mt-1 text-xs text-muted">Here’s what’s moving across your workspace.</p>
+            </div>
+            <button className="workspace-invite" disabled type="button">
+              <Plus aria-hidden="true" size={14} />
+              Invite
+            </button>
+          </div>
+
+          <div className="workspace-summary">
+            <div className="summary-cell summary-cell-featured">
+              <span className="summary-eyebrow">Projects on track</span>
+              <span className="summary-value">08</span>
+              <span className="summary-note">Across your workspace</span>
+              <ArrowUpRight aria-hidden="true" className="summary-trend" size={17} />
+            </div>
+            <div className="summary-cell">
+              <span className="summary-eyebrow">Tasks this week</span>
+              <span className="summary-value">24</span>
+              <span className="summary-note">4 due today</span>
+            </div>
+            <div className="summary-cell">
+              <span className="summary-eyebrow">Team members</span>
+              <span className="summary-value">12</span>
+              <span className="summary-note">Working together</span>
+            </div>
+          </div>
+
+          <div className="workspace-task-heading">
+            <div>
+              <h3 className="text-sm font-semibold text-ink">Team tasks</h3>
+              <p className="mt-0.5 text-[11px] text-muted">Keep an eye on what’s next.</p>
+            </div>
             <div aria-label="Filter tasks" className="filter-tabs" role="group">
               {filters.map((item) => (
                 <button
@@ -109,7 +198,7 @@ export default function Hero() {
           <h1 className="font-heading text-pretty text-[clamp(2.75rem,5.2vw,4.75rem)] font-bold leading-[1.03] tracking-[-0.065em] text-ink">
             Bring every part of <span className="text-accent-ink">work together.</span>
           </h1>
-          <p className="mt-6 max-w-[29rem] text-base leading-7 text-body sm:text-lg sm:leading-8">
+          <p className="mt-6 max-w-116 text-base leading-7 text-body sm:text-lg sm:leading-8">
             Plan projects, share updates, and keep the next step clear for everyone on your team.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
