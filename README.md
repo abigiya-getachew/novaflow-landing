@@ -1,16 +1,42 @@
-# React + Vite
+# NovaFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive SaaS landing page built with React, Vite, Tailwind CSS, and Lucide icons. It includes a light-first theme with an optional dark mode, a responsive navigation menu, pricing and product-preview sections, FAQ accordions, and a demo request form.
 
-Currently, two official plugins are available:
+## Create a project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm create vite@latest novaflow -- --template react
+cd novaflow
+npm install
+npm install tailwindcss @tailwindcss/vite lucide-react
+```
 
-## React Compiler
+Copy the NovaFlow source files into the project, then run the development server:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Build and preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run build
+npm run preview
+```
+
+The production-ready static site is generated in `dist/`.
+
+## Deploy
+
+For example, deploy to Vercel after installing or using its CLI:
+
+```bash
+npx vercel
+npx vercel --prod
+```
+
+Alternatively, publish the contents of `dist/` with any static hosting provider.
+
+## Notes
+
+The demo request form currently validates required fields and displays the requested success message in the browser. Connect its submit handler in `src/components/Contact.jsx` to a form service or application endpoint before collecting real requests.
